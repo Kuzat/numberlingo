@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  color: #605B56;
+  background-color: #FFEEDB;
+}
+.App {
+  text-align: center;
+}
+
+.App-header {
+  margin: 16vh 0;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 3vmin);
+}
+
+.primary {
+  background-color: #ED9B40;
+}
+
+.success {
+  background-color: #7BE0AD;
+}
+
+.fail {
+  background-color: #F25C54;
+}
+
+.language-select {
+  display: inline-block;
+  min-width: 250px;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.divider {
+  margin: 3vw auto;
+  font-size: 5vw;
+}
+
+.divider-row {
+  /*margin-top: 3vw;*/
+  margin-right: 2vw;
+  font-size: 5vw;
+}
+
+.language-selection {
+  font-weight: bold;
+  font-size: calc(10px + 2vmin);
+}
+
+.level-selection {
+  margin-top: 3vh;
+  font-weight: bold;
+  font-size: calc(10px + 2vmin);
+}
+
+.number-input {
+  min-width: 60px;
+  margin: auto 1rem;
+  opacity: 0.5;
+  border: none;
+  background-color: #ed9b4059;
+  color: #605B56;
+  min-height: 2rem;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  width: 7%;
+}
+
+.begin-button {
+  margin: 0 auto 20vh;
+  border: none;
+  border-radius: 15px;
+  background-color: #ED9B40;
+  min-height: 40px;
+  min-width: 150px;
+  font-weight: 300;
+  font-size: calc(10px + 2vmin);
+  cursor: pointer;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+
