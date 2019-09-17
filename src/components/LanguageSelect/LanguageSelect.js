@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-const languageCodes = require('./languageCodes');
+const languageCodes = require('../../utils/languageCodes');
 
 const customStyle = {
     indicatorsContainer: () => ({

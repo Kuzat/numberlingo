@@ -5,10 +5,13 @@ body {
 }
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
-  margin: 16vh 0;
+  margin: 8vh 0 16vh;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -41,13 +44,13 @@ body {
 
 .divider {
   margin: 3vw auto;
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .divider-row {
   /*margin-top: 3vw;*/
   margin-right: 2vw;
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 .language-selection {
@@ -86,6 +89,84 @@ body {
   cursor: pointer;
 }
 
+/* GAME */
+.game {
+  height: 100vh;
+}
+.game-header {
+  margin: 3vh 5vw 16vh;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+}
+
+.game-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.question-number {
+  font-size: calc(10px + 4vmin);
+  font-weight: bold;
+  min-height: 10vh;
+}
+
+.guess-input {
+  min-width: 200px;
+  margin: 2vh 1rem;
+  border: solid 1px #88551d;
+  background-color: #ED9B40;
+  color: #605B56;
+  min-height: 32px;
+  height: 5vmin;
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+  width: 20%;
+  border-radius: 10px;
+}
+
+.guess-input:focus {
+  outline: unset;
+  box-shadow: 0 0 3pt 1pt #88551d;
+}
+
+
+/* UTILS */
+
+.tracker {
+  width: 50%;
+  height: 15px;
+  margin: 8vh 2vw 16vh;
+  background: #ed9b4059;
+  border-radius: 10px;
+}
+
+.inner-tracker {
+  height: 15px;
+  background: #7BE0AD;
+  border-radius: 10px;
+  -webkit-transition: width 1s ease;
+  -moz-transition: width 1s ease;
+  -ms-transition: width 1s ease;
+  -o-transition: width 1s ease;
+  transition: width 1s ease;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(-360deg) scale(1.1);
+  }
+}
+
+.spinner {
+  animation: 2s ease infinite spin;
+  font-size: 5vw;
+}
+
 form {
   margin: 0;
   padding: 0;
@@ -98,6 +179,15 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+}
+
+a {
+  text-decoration: unset;
+  color: unset;
+}
+
+a:focus {
+  outline: unset;
 }
 
 
