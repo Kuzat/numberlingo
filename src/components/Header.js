@@ -19,7 +19,7 @@ const Header = (props) => {
 
 
     return (
-        <Link tabindex={"-1"} to={"/"}>
+        <Link tabIndex={"-1"} to={"/"}>
             <header className={props.className}>
                 <h1>{flag} NumberLingo 🔢 💯 🎓</h1>
             </header>

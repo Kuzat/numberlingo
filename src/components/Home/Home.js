@@ -10,7 +10,7 @@ const Home = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (language && numbers) {
-            props.history.push(`/learn/${language.label}?from=${numbers.from}&to=${numbers.to}`)
+            props.history.push(`/learn/${language.value}?from=${numbers.from}&to=${numbers.to}`)
         }
     };
 
@@ -20,6 +20,7 @@ const Home = (props) => {
         numberSectionClass += " hidden";
         dividerClass += " hidden";
     }
+
     return (
         <div>
             <Header className={"App-header"}/>

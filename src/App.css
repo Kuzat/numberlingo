@@ -7,7 +7,7 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .App-header {
@@ -18,18 +18,6 @@ body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 3vmin);
-}
-
-.primary {
-  background-color: #ED9B40;
-}
-
-.success {
-  background-color: #7BE0AD;
-}
-
-.fail {
-  background-color: #F25C54;
 }
 
 .language-select {
@@ -44,13 +32,13 @@ body {
 
 .divider {
   margin: 3vw auto;
-  font-size: 4vw;
+  font-size: calc(10px + 6vmin);
 }
 
 .divider-row {
   /*margin-top: 3vw;*/
   margin-right: 2vw;
-  font-size: 4vw;
+  font-size: calc(10px + 6vmin);
 }
 
 .language-selection {
@@ -91,7 +79,7 @@ body {
 
 /* GAME */
 .game {
-  height: 100vh;
+  height: 100%;
 }
 .game-header {
   margin: 3vh 5vw 16vh;
@@ -107,19 +95,24 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 30%;
 }
 
 .question-number {
-  font-size: calc(10px + 4vmin);
+  font-size: calc(10px + 5vmin);
   font-weight: bold;
-  min-height: 10vh;
+  height: 12%;
+}
+
+.question-input {
+  height: 58%;
 }
 
 .guess-input {
   min-width: 200px;
   margin: 2vh 1rem;
-  border: solid 1px #88551d;
-  background-color: #ED9B40;
+  border: solid 2px #88551d69;;
+  background-color: #ed9b40bd;
   color: #605B56;
   min-height: 32px;
   height: 5vmin;
@@ -131,7 +124,127 @@ body {
 
 .guess-input:focus {
   outline: unset;
-  box-shadow: 0 0 3pt 1pt #88551d;
+}
+
+.guess-input:disabled {
+  opacity: 0.4;
+}
+
+.gameboard-section {
+  height: 100%;
+}
+
+.answer-section {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: calc(10px + 6vmin);
+}
+
+.correct {
+  background: #1dff8d6b;
+  color: #029c02;
+  border: solid 1px #01bd005e;
+}
+
+.wrong {
+  background: #f15a598c;
+  color: #f20f00;
+  border: solid 1px #f20e0063;
+}
+
+.logo {
+  font-size: 3rem;
+}
+
+.continue-button {
+  border-radius: 15px;
+  min-height: 40px;
+  min-width: 150px;
+  font-weight: 500;
+  font-size: calc(10px + 2vmin);
+  cursor: pointer;
+}
+
+.continue-button:focus {
+  outline: unset;
+}
+
+.scoreboard {
+  font-size: calc(10px + 5vmin);
+  display: flex;
+  flex-direction: column;
+  background-color: #ED9B40;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  border-radius: 170px 10px;
+  border: solid 1px #ED9B40;
+  height: 30%;
+  position: relative;
+}
+
+.score-emoji {
+  font-size: calc(10px + 11vmin);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.score-text {
+  margin: 10%;
+}
+
+.historyboard {
+  background-color: #ED9B40;
+  border-radius: 10px 170px;
+  width: 50%;
+  margin: auto;
+  padding-bottom: 20px;
+  font-size: calc(10px + 2vmin);
+}
+
+.history-element {
+  width: 40%;
+  margin: 4px auto;
+  border-radius: 6px;
+  font-size: calc(10px + 1vmin)
+}
+
+.accordion__button {
+  background: none;
+  color: #605B56;
+  cursor: pointer;
+  padding: 18px;
+  text-align: center;
+  border: none;
+}
+
+.accordion__button:focus {
+  outline-color: rgba(96, 91, 86, 0.71);
+}
+
+.accordion__button:before {
+  display: inline-block;
+  content: '';
+  height: 10px;
+  width: 10px;
+  margin-right: 12px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.accordion__button[aria-expanded='true']::before,
+.accordion__button[aria-selected='true']::before {
+  transform: rotate(45deg);
+}
+
+.accordion__panel {
+  color: #605B56;
 }
 
 
@@ -143,6 +256,10 @@ body {
   margin: 8vh 2vw 16vh;
   background: #ed9b4059;
   border-radius: 10px;
+  -webkit-box-shadow: inset 0px 0px 5px 0px rgba(153,88,8,0.4);
+  -moz-box-shadow: inset 0px 0px 5px 0px rgba(153,88,8,0.4);
+  box-shadow: inset 0px 0px 5px 0px rgba(153,88,8,0.4);
+  position: relative;
 }
 
 .inner-tracker {
@@ -190,4 +307,23 @@ a:focus {
   outline: unset;
 }
 
+main {
+  height: 70%;
+}
+
+body {
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
+footer {
+  margin: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: calc(10px + 1vmin);
+}
 

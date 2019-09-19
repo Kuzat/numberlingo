@@ -1,21 +1,23 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import * as queryString from 'query-string';
 import * as api from '../../utils/api';
 import Spinner from "../Spinner";
 import Header from "../Header";
 
-import languageCodes from "../../utils/languageCodes";
 import ProgressBar from "./ProgressBar";
+import Gameboard from "./Gameboard";
+import Scoreboard from "./Scoreboard";
 
 const Game = (props) => {
-    const languageCode = languageCodes[props.match.params.language];
+    const languageCode = props.match.params.language;
     const settings = queryString.parse(props.location.search, {parseNumbers: true});
 
     const [questions, setQuestions] = useState(null);
-    const [wrong, setWrong] = useState([]);
-    const [done, setDone] = useState(false);
+    const [history, setHistory] = useState([]);
+    const [stage, setStage] = useState({done: false, answer: false});
     const [guess, setGuess] = useState('');
     const [score, setScore] = useState(0);
+    const guessInputRef = useRef(null);
 
     useEffect(() => {
         let isMounted = true;
@@ -40,36 +42,56 @@ const Game = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
+        // CHeck which staging we are in
+        if (!stage.answer && !stage.done) {
+            // We just guessed and need to go to answer stage
+            handleGuess();
+            setStage({...stage, answer: true});
+        } else if (stage.answer && !stage.done) {
+            if (questions.length > 1) {
+                setQuestions([...questions.slice(1)]);
+                setStage({...stage, answer: false});
+                setTimeout(() => {
+                    guessInputRef.current.focus();
+                }, 100);
+            } else {
+                setQuestions(null);
+                setStage({...stage, done: true});
+            }
+            setGuess('');
+        }
+    };
+
+    const handleGuess = () =>  {
         if (guess.toLowerCase().replace(/\s|-/g,'') === questions[0].english.toLowerCase().replace(/\s|-/g,'')
             || parseInt(guess) === questions[0].number) {
             // If we get correct response then we raise the score and go to the next question
             // if there are no question left then we set the state done=true
             console.log("Correct");
             setScore(score+1);
-            if (questions.length > 1) {
-                setQuestions([...questions.slice(1)]);
-            } else {
-                setQuestions(null);
-                setDone(true);
-                console.log(`Your score was: ${score}/10` );
-            }
+            setHistory([...history, {
+                answer: questions[0].number,
+                answerEnglish: questions[0].english,
+                language: questions[0].language,
+                guess: guess,
+                correct: true,
+            }]);
         } else {
             // If the user input the wrong answer then we go to the next question
             // but don't give score
             console.log("Wrong");
-            if (questions.length > 1) {
-                setQuestions([...questions.slice(1)]);
-            } else {
-                setQuestions(null);
-                setDone(true);
-                console.log(`Your score was: ${score}/10` );
-            }
+            setHistory([...history, {
+                answer: questions[0].number,
+                answerEnglish: questions[0].english,
+                language: questions[0].language,
+                guess: guess,
+                correct: false
+            }]);
         }
-        setGuess('');
     };
 
     // Loading check
-    if (!questions && !done) {
+    if (!questions && !stage.done) {
         return (
             <div className={"game"}>
                 <section className={"game-header-section"}>
@@ -84,22 +106,21 @@ const Game = (props) => {
         <div className={"game"}>
             <section className={"game-header-section"}>
                 <Header className={"game-header"}/>
-                <ProgressBar className={"game-progress"} progress={done ? 100: (10-questions.length)/10 * 100}/>
+                <ProgressBar className={"game-progress"} progress={stage.done ? 100: (10-questions.length)/10 * 100}/>
             </section>
 
             <main>
-                <section className={"question-number"}>{questions ? questions[0].language : ''}</section>
-
-                <section className={"question-input"}>
-                    <div className={"divider"}>🔢</div>
-                    <div className={"divider"}>👇</div>
-                    <form onSubmit={handleSubmit}>
-                        <input autoFocus={true} placeholder={"Enter Number"} className={"guess-input"} onChange={e => setGuess(e.target.value)} value={guess} type={"text"}/>
-                    </form>
-                </section>
+                <Gameboard
+                    history={history}
+                    stage={stage}
+                    questions={questions}
+                    handleSubmit={handleSubmit}
+                    guess={guess}
+                    setGuess={setGuess}
+                    guessRef={guessInputRef}
+                />
+                <Scoreboard history={history} done={stage.done} score={score}/>
             </main>
-
-            {done ? <span>Score: {score}/10</span> : ''}
         </div>
     );
 };

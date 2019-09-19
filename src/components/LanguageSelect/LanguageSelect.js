@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
-const languageCodes = require('../../utils/languageCodes');
+import * as api from "../../utils/api";
 
 const customStyle = {
     indicatorsContainer: () => ({
@@ -16,27 +16,31 @@ const customStyle = {
     placeholder: (provided, state) => ({
         ...provided,
         color: "#605B56"
-    }),
-
+    })
 };
 
-const options = Object.keys(languageCodes).map(language => {
-    return {
-        value: languageCodes[language],
-        label: language
-    };
-});
 
 const LanguageSelect = (props) => {
-    const handleChange = (e, action) => {
-        props.onChange(e);
-    };
+    const [languages, setLanguages] = useState(null);
+
+    useEffect(() => {
+        api.getSupportedLanguages().then(languages => {
+            const options = languages.map(language => {
+                return {
+                    value: language.language,
+                    label: language.name
+                };
+            });
+
+            setLanguages(options);
+        })
+    }, []);
 
     return (
         <Select
-            onChange={handleChange}
+            onChange={e => props.onChange(e)}
             className={"language-select"}
-            options={options}
+            options={languages}
             placeholder={"Language"}
             maxMenuHeight={200}
             styles={customStyle}
