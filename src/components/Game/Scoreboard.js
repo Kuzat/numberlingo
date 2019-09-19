@@ -66,7 +66,7 @@ const HistoryElement = (props) => {
         <AccordionItem className={elementClass}>
             <AccordionItemHeading>
                 <AccordionItemButton>
-                    #{props.id} {props.history.language}
+                    #{props.id+1} {props.history.language}
                 </AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>

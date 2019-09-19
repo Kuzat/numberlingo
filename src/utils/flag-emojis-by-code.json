@@ -35,7 +35,7 @@
     "name": "Anguilla",
     "emoji": "🇦🇮"
   },
-  "AL": {
+  "SQ": {
     "code": "AL",
     "unicode": "U+1F1E6 U+1F1F1",
     "name": "Albania",
@@ -1524,7 +1524,7 @@
     "emoji": "🇾🇹"
   },
   "ZA": {
-    "code": "ZA",
+    "code": "AF",
     "unicode": "U+1F1FF U+1F1E6",
     "name": "South Africa",
     "emoji": "🇿🇦"

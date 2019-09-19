@@ -25,7 +25,7 @@ const LanguageSelect = (props) => {
 
     useEffect(() => {
         api.getSupportedLanguages().then(languages => {
-            const options = languages.map(language => {
+            const options = languages.filter(language => language.language !== "en").map(language => {
                 return {
                     value: language.language,
                     label: language.name
