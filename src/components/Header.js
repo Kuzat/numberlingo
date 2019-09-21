@@ -21,7 +21,7 @@ const Header = (props) => {
     return (
         <Link tabIndex={"-1"} to={"/"}>
             <header className={props.className}>
-                <h1>{flag} NumberLingo 🔢 💯 🎓</h1>
+                <h1>{flag} NumberLingo <span role={"img"} aria-label={"Emoji of number and graduation hat"}>🔢 💯 🎓</span></h1>
             </header>
         </Link>
     );

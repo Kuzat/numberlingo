@@ -34,7 +34,7 @@ const Home = (props) => {
                         <LanguageSelect onChange={setLanguage}/>
                     </section>
 
-                    <div className={dividerClass}>👇</div>
+                    <div className={dividerClass}><span role={"img"} aria-label={"Emoji of finger point down"}>👇</span></div>
 
                     <section className={numberSectionClass}>
                         I want to learn numbers from
@@ -43,7 +43,7 @@ const Home = (props) => {
                         to
                         <input tabIndex={3} onChange={e => setNumbers({...numbers, to: parseInt(e.target.value)})}
                                className={"number-input"} type="number" value={numbers.to} min={10}/>
-                        <span className={"divider-row"} role={"img"}>👉</span><button tabIndex={4} className={"begin-button"}>Let's Start</button>
+                        <span className={"divider-row"} role={"img"} aria-label={"Emoji of finger pointing to the right"}>👉</span><button tabIndex={4} className={"begin-button"}>Let's Start</button>
                     </section>
                 </form>
             </main>

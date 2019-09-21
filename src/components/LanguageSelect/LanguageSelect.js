@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Select from 'react-select';
 import * as api from "../../utils/api";
 import {languageLocalStorage} from '../../utils/localstorageUtils';

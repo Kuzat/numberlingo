@@ -15,7 +15,7 @@ var MAX_SAFE_INTEGER = 9007199254740991;
 
 // Simplified https://gist.github.com/marlun78/885eb0021e980c6ce0fb
 function isFinite(value) {
-    return !(typeof value !== 'number' || value !== value || value === Infinity || value === -Infinity);
+    return !(typeof value !== 'number' || value === Infinity || value === -Infinity);
 }
 
 

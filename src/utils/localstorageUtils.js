@@ -28,6 +28,7 @@ export const allStorage = () => {
     const values = [];
     const keys = Object.keys(localStorage).filter(key => key.split('-')[0] !== "LanguageList");
 
+    // eslint-disable-next-line no-unused-vars
     for (const key of keys) {
         const languageList = JSON.parse(localStorage.getItem('LanguageList-0-0'));
         const keyParts = key.split("-");

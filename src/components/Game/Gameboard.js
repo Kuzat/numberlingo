@@ -9,8 +9,8 @@ const Gameboard = ({questions, handleSubmit, setGuess, guess, stage, history, gu
             <section className={"question-number"}>{questions ? questions[0].language : ''}</section>
 
             <section className={"question-input"}>
-                <div className={"divider"} style={{marginTop: 0}}>🔢</div>
-                <div className={"divider"}>👇</div>
+                <div className={"divider"} style={{marginTop: 0}}><span role={"img"} aria-label={"meme"}>🔢</span></div>
+                <div className={"divider"}><span role={"img"} aria-label={"Emoji of a finger pointing down"}>👇</span></div>
                 <form onSubmit={handleSubmit}>
                     <input
                         disabled={stage.answer}
@@ -54,7 +54,7 @@ const Answers = ({show, history, handleSubmit}) => {
     }
     return (
         <section className={answerClass}>
-            <span className={"logo"}>{logo}</span>
+            <span className={"logo"}><span role={"img"} aria-label={"A emoji showing if have a wrong or correct solution"}>{logo}</span></span>
             <div>
                 <div>{message}</div>
                 <div>{solution}</div>

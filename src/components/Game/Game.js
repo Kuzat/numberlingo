@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import * as queryString from 'query-string';
 import * as api from '../../utils/api';
 import {languageLocalStorage} from '../../utils/localstorageUtils';

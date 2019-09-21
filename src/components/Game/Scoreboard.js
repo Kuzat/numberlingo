@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Accordion,
     AccordionItem,
@@ -37,7 +37,7 @@ const Scoreboard = ({done, score, history, handleRestart}) => {
             </section>
 
             <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} className={"historyboard"}>
-                <h2>History📚</h2>
+                <h2>History <span role={"img"} aria-label={"Emoji of books"}>📚</span></h2>
                 {history.map((element, i) => {
                     return <HistoryElement
                         history={element}
