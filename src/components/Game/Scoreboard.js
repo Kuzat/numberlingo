@@ -2,24 +2,21 @@ import React, {useState} from 'react';
 import {
     Accordion,
     AccordionItem,
-    AccordionItemHeading,
     AccordionItemButton,
+    AccordionItemHeading,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 import CircleButton from "../Button/CircleButton";
-
-// import 'react-accessible-accordion/dist/fancy-example.css';
 
 const Scoreboard = ({done, score, history, handleRestart}) => {
     if (!done) {
         return null;
     }
 
-    const emojiHigh = ["🥳", "🤩", "😍"];
-    const emojiMedium = ["😝", "😹", "🤧"];
-    const emojiLow = ["🥺", "💩","👀️"];
-    const emojiZero = "😎";
-    let emoji = emojiZero;
+    const emojiHigh = ["🥳", "🤩", "😍", "😻"];
+    const emojiMedium = ["😝", "😹", "🤧", "🤨"];
+    const emojiLow = ["🥺", "💩","👀️", "🤔"];
+    let emoji = "😎";
 
     if (score >= 7) {
         emoji = emojiHigh[~~(Math.random()*emojiHigh.length)];
@@ -29,8 +26,6 @@ const Scoreboard = ({done, score, history, handleRestart}) => {
         emoji = emojiLow[~~(Math.random()*emojiLow.length)];
     }
 
-
-    console.log(history);
     return (
         <section>
             <section className={"score-section"}>
@@ -38,7 +33,7 @@ const Scoreboard = ({done, score, history, handleRestart}) => {
                     <span className={"score-emoji"}>{emoji}</span>
                     <span className={"score-text"}>You answered {score} numbers out of 10 correctly</span>
                 </div>
-                <CircleButton onSubmit={handleRestart} autoFocus={true}>Continue Learning</CircleButton>
+                <CircleButton onSubmit={handleRestart}>Continue Learning</CircleButton>
             </section>
 
             <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} className={"historyboard"}>
@@ -56,9 +51,6 @@ const Scoreboard = ({done, score, history, handleRestart}) => {
 };
 
 const HistoryElement = (props) => {
-
-    const [hidden, setHidden] = useState(true);
-
     let elementClass = "history-element";
     if (props.history.correct) {
         elementClass += " correct";

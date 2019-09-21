@@ -1,25 +1,39 @@
 import React, {useState, useEffect, useRef} from 'react';
 import * as queryString from 'query-string';
 import * as api from '../../utils/api';
+import {languageLocalStorage} from '../../utils/localstorageUtils';
 import Spinner from "../Spinner";
 import Header from "../Header";
-
 import ProgressBar from "./ProgressBar";
 import Gameboard from "./Gameboard";
 import Scoreboard from "./Scoreboard";
 
+const useStateWithLocalStorage = (localStorageKey, init, langstorage=localStorage) => {
+    const [value, setValue] = React.useState(
+        JSON.parse(langstorage.getItem(localStorageKey)) || init)
+    ;
+
+    React.useEffect(() => {
+        langstorage.setItem(localStorageKey, JSON.stringify(value));
+    }, [value]);
+
+    return [value, setValue]
+};
+
 const Game = (props) => {
     const languageCode = props.match.params.language;
     const settings = queryString.parse(props.location.search, {parseNumbers: true});
+    const langstorage = languageLocalStorage(languageCode, settings.from, settings.to);
 
-    const [questions, setQuestions] = useState(null);
-    const [history, setHistory] = useState([]);
-    const [stage, setStage] = useState({done: false, answer: false});
-    const [guess, setGuess] = useState('');
-    const [score, setScore] = useState(0);
+    const [questions, setQuestions] = useStateWithLocalStorage('questions', null, langstorage);
+    const [history, setHistory] = useStateWithLocalStorage('history', [], langstorage);
+    const [stage, setStage] = useStateWithLocalStorage('stage', {done: false, answer: false}, langstorage);
+    const [guess, setGuess] = useStateWithLocalStorage('guess', '', langstorage);
+    const [score, setScore] = useStateWithLocalStorage('score', 0, langstorage);
     const guessInputRef = useRef(null);
 
     useEffect(() => {
+        if (questions != null || stage.done) return;
         let isMounted = true;
         // Check if we have the from and to variables and that they are not NaN
         if (!isNaN(settings.from) && !isNaN(settings.to)) {

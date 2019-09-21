@@ -1,6 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import * as api from "../../utils/api";
+import {languageLocalStorage} from '../../utils/localstorageUtils';
+
+const useStateWithLocalStorage = (localStorageKey, init, langstorage=localStorage) => {
+    const [value, setValue] = React.useState(
+        JSON.parse(langstorage.getItem(localStorageKey)) || init)
+    ;
+
+    React.useEffect(() => {
+        langstorage.setItem(localStorageKey, JSON.stringify(value));
+    }, [value]);
+
+    return [value, setValue]
+};
 
 const customStyle = {
     indicatorsContainer: () => ({
@@ -21,9 +34,12 @@ const customStyle = {
 
 
 const LanguageSelect = (props) => {
-    const [languages, setLanguages] = useState(null);
+    const sesstorage = languageLocalStorage('LanguageList', 0, 0);
+    const [languages, setLanguages] = useStateWithLocalStorage('languages', null, sesstorage);
 
     useEffect(() => {
+        if (languages != null) return;
+        console.log("Getting Languages");
         api.getSupportedLanguages().then(languages => {
             const options = languages.filter(language => language.language !== "en").map(language => {
                 return {
@@ -44,6 +60,7 @@ const LanguageSelect = (props) => {
             placeholder={"Language"}
             maxMenuHeight={200}
             styles={customStyle}
+            tabIndex={1}
         />
     );
 };
