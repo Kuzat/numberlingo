@@ -1,4 +1,4 @@
-# NumberLingo
+# NumberLingo 💯 🎓
 
 I choose to make a simple webapp that lets you quiz numbers in different languages. It uses the google cloud translate API to translate randomly generated numbers from english to a language you want to learn.
 
@@ -11,3 +11,5 @@ You then continue until you complete all the 10 questions. Then you will get a s
 The webapp is also capable of saving your progress in the localstorage so if you leave by accident or want to continue where you left of earlier. You can also see the previous sessions on the home screen if there are any available.
 
 For this project to work you need to have the api key in the .env.json file. I have added this to the zip file that I deliver but it will not be added to the version control system out because of security.
+
+Because of the __heavy use of emoji's__ it looks best on a system with good emoji support like __Mac os__, some newer versions of Windows or __mobile__
