@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 body {
   margin: 0;
   color: #605B56;
   background-color: #FFEEDB;
+  font-family: 'Roboto', sans-serif;
 }
 .App {
   text-align: center;
@@ -180,7 +183,8 @@ body {
   background-color: #ED9B40;
   align-items: center;
   width: 50%;
-  margin: auto;
+  /*margin: auto;*/
+  margin-right: 5vw;
   border-radius: 170px 10px;
   border: solid 1px #ED9B40;
   height: 30%;
@@ -247,6 +251,13 @@ body {
   color: #605B56;
 }
 
+.score-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* UTILS */
 
@@ -271,6 +282,26 @@ body {
   -ms-transition: width 1s ease;
   -o-transition: width 1s ease;
   transition: width 1s ease;
+}
+
+.circle-button {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 10vw;
+  height: 10vw;
+  font-size: calc(10px + 2vmin);
+  background-color: #ED9B40;
+  cursor: pointer;
+  color: #605B56;
+}
+
+.circle-button:hover {
+   background-color: #ffad40;
+ }
+
+.circle-button:focus {
+  outline: unset;
 }
 
 @keyframes spin {

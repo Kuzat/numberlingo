@@ -6,10 +6,11 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import CircleButton from "../Button/CircleButton";
 
 // import 'react-accessible-accordion/dist/fancy-example.css';
 
-const Scoreboard = ({done, score, history}) => {
+const Scoreboard = ({done, score, history, handleRestart}) => {
     if (!done) {
         return null;
     }
@@ -32,10 +33,13 @@ const Scoreboard = ({done, score, history}) => {
     console.log(history);
     return (
         <section>
-            <div className={"scoreboard"}>
-                <span className={"score-emoji"}>{emoji}</span>
-                <span className={"score-text"}>You answered {score} numbers out of 10 correctly</span>
-            </div>
+            <section className={"score-section"}>
+                <div className={"scoreboard"}>
+                    <span className={"score-emoji"}>{emoji}</span>
+                    <span className={"score-text"}>You answered {score} numbers out of 10 correctly</span>
+                </div>
+                <CircleButton onSubmit={handleRestart} autoFocus={true}>Continue Learning</CircleButton>
+            </section>
 
             <Accordion allowZeroExpanded={true} allowMultipleExpanded={true} className={"historyboard"}>
                 <h2>History📚</h2>

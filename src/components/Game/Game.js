@@ -62,6 +62,17 @@ const Game = (props) => {
         }
     };
 
+    const handleRestart = e => {
+        // Initially we need to query the API to get the numbers in the language you want to learn
+        const numbers = Array.from(Array(10), _ => Math.floor(Math.random() * (settings.to - settings.from + 1)) + settings.from);
+        api.getLanguageNumbers(numbers, languageCode).then(questions => {
+            setQuestions(questions);
+            setStage({done: false, answer: false})
+            setScore(0);
+            setHistory([]);
+        });
+    };
+
     const handleGuess = () =>  {
         if (guess.toLowerCase().replace(/\s|-/g,'') === questions[0].english.toLowerCase().replace(/\s|-/g,'')
             || parseInt(guess) === questions[0].number) {
@@ -119,7 +130,7 @@ const Game = (props) => {
                     setGuess={setGuess}
                     guessRef={guessInputRef}
                 />
-                <Scoreboard history={history} done={stage.done} score={score}/>
+                <Scoreboard history={history} done={stage.done} score={score} handleRestart={handleRestart}/>
             </main>
         </div>
     );
